@@ -1,5 +1,4 @@
 {
-  "exclude": ["node_modules", "**/*.test.ts"],
   "compilerOptions": {
     /* Basic Options */
     "target": "esnext" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */,
@@ -59,5 +58,6 @@
 
     /* Advanced Options */
     // "declarationDir": "lib"                /* Output directory for generated declaration files. */
-  }
+  },
+  "exclude": ["node_modules", "**/*.test.ts"]
 }
