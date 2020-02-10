@@ -1,6 +1,6 @@
 {
   "name": "ts-node-starter",
-  "version": "0.7.2",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "build": "concurrently npm:build:*",
@@ -9,6 +9,18 @@
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "lint": "concurrently \"npm:type-check\" \"eslint '*/**/*.{js,ts}' --quiet --fix\""
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run lint && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,json,css,md}": [
+      "pretty-quick",
+      "git add"
+    ]
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.8.4",
@@ -22,12 +34,16 @@
     "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-typescript": "^7.8.3",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-jest": "^23.7.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
     "regenerator-runtime": "^0.13.3",
