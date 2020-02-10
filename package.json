@@ -2,18 +2,23 @@
   "name": "ts-node-starter",
   "version": "1.0.0",
   "license": "MIT",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/types/index.d.ts",
   "scripts": {
     "build": "concurrently npm:build:*",
     "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
+    "build:js": "rollup -c",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
-    "lint": "concurrently \"npm:type-check\" \"eslint '*/**/*.{js,ts}' --quiet --fix\""
+    "lint": "concurrently \"npm:type-check\" \"eslint '*/**/*.{js,ts}' --quiet --fix\"",
+    "test": "jest --no-cache"
   },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
-      "pre-commit": "npm run lint && lint-staged"
+      "pre-commit": "npm run lint && lint-staged",
+      "pre-push": "npm run test"
     }
   },
   "lint-staged": {
@@ -36,6 +41,9 @@
     "@babel/preset-typescript": "^7.8.3",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@types/jest": "^25.1.2",
     "@typescript-eslint/eslint-plugin": "^2.19.0",
     "@typescript-eslint/parser": "^2.19.0",
     "eslint": "^6.8.0",
@@ -43,10 +51,15 @@
     "eslint-plugin-jest": "^23.7.0",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.1",
+    "jest": "^25.1.0",
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
     "regenerator-runtime": "^0.13.3",
+    "rollup": "1.31.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-sourcemaps": "^0.5.0",
+    "ts-jest": "^25.2.0",
     "typescript": "^3.7.5"
   }
 }

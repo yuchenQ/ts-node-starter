@@ -1,10 +1,5 @@
-export class C {
-  private x = 10;
-  getX = () => this.x;
-  setX = (newVal: number) => {
-    this.x = newVal;
-  };
-}
+const name = 'ts-node-starter';
 
-export const x = new C();
-export const y = { ...{ some: 'value' } };
+export default (): string => {
+  return `Hello, ${name}`;
+};
