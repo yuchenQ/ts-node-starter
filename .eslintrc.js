@@ -2,6 +2,7 @@ module.exports = {
   parser: '@typescript-eslint/parser', // Specifies the ESLint parser
   plugins: ['@typescript-eslint', 'jest'],
   extends: [
+    'eslint:recommended',
     'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
     'plugin:jest/recommended',
     'prettier/@typescript-eslint', // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
@@ -13,8 +14,12 @@ module.exports = {
     es6: true,
   },
   parserOptions: {
-    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module', // Allows for the use of imports
+    project: './tsconfig.eslint.json',
+    ecmaVersion: 2019,
+    sourceType: 'module',
+    ecmaFeatures: {
+      experimentalObjectRestSpread: true,
+    },
   },
   rules: {
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
